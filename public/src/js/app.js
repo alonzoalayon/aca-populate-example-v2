@@ -1,5 +1,11 @@
 window.$ = window.jQuery = require('jquery');
-var el = document.createElement('div');
-el.innerText = 'Hello, Jason!';
+var ItemsView = require('./views/ItemsView');
+var ItemsCollection = require('./collections/ItemsCollection');
 
-$('#app').html(el);
+var itemsCollection = new ItemsCollection();
+var itemsView = new ItemsView({collection: itemsCollection});
+
+itemsCollection.fetch();
+
+
+$('#app').html(itemsView.render().el);
